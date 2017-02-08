@@ -66,7 +66,9 @@ RCT_EXPORT_METHOD(enable:(BOOL)enabled) {
 RCT_EXPORT_METHOD(setCategory:(NSString*)categoryName) {
   AVAudioSession *session = [AVAudioSession sharedInstance];
   if ([categoryName isEqual: @"Ambient"]) {
-    [session setCategory: AVAudioSessionCategoryAmbient error: nil];
+    [session setCategory: AVAudioSessionCategoryAmbient
+             withOptions:AVAudioSessionCategoryOptionMixWithOthers|AVAudioSessionCategoryOptionAllowBluetooth|AVAudioSessionCategoryOptionAllowBluetoothA2DP|AVAudioSessionCategoryOptionDefaultToSpeaker
+                   error:nil];
   } else if ([categoryName isEqual: @"SoloAmbient"]) {
     [session setCategory: AVAudioSessionCategorySoloAmbient error: nil];
   } else if ([categoryName isEqual: @"Playback"]) {
@@ -74,7 +76,9 @@ RCT_EXPORT_METHOD(setCategory:(NSString*)categoryName) {
   } else if ([categoryName isEqual: @"Record"]) {
     [session setCategory: AVAudioSessionCategoryRecord error: nil];
   } else if ([categoryName isEqual: @"PlayAndRecord"]) {
-    [session setCategory: AVAudioSessionCategoryPlayAndRecord error: nil];
+    [session setCategory:AVAudioSessionCategoryPlayAndRecord
+             withOptions:AVAudioSessionCategoryOptionMixWithOthers|AVAudioSessionCategoryOptionAllowBluetooth|AVAudioSessionCategoryOptionAllowBluetoothA2DP|AVAudioSessionCategoryOptionDefaultToSpeaker
+                   error:nil];
   } else if ([categoryName isEqual: @"AudioProcessing"]) {
     [session setCategory: AVAudioSessionCategoryAudioProcessing error: nil];
   } else if ([categoryName isEqual: @"MultiRoute"]) {
